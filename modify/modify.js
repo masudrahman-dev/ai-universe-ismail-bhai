@@ -1,12 +1,5 @@
 const url = 'https://openapi.programming-hero.com/api/ai/tools';
 
-const d = [
-  { published_in: '11/1/2022' },
-  { published_in: '12/1/2022' },
-  { published_in: '2/1/2023' },
-  { published_in: '3/1/2021' },
-];
-
 const loadData = () => {
   fetch(url)
     .then((res) => res.json())
