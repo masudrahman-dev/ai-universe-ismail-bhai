@@ -1,21 +1,45 @@
 const url = 'https://openapi.programming-hero.com/api/ai/tools';
+
+const d = [
+  { published_in: '11/1/2022' },
+  { published_in: '12/1/2022' },
+  { published_in: '2/1/2023' },
+  { published_in: '3/1/2021' },
+];
+
 const loadData = () => {
   fetch(url)
     .then((res) => res.json())
-    .then((data) => dataDisplay(data.data.tools));
+    .then((data) => {
+      dataDisplay(data.data.tools.slice(0, 6));
+    });
+};
+// show all data
+const showAlls = () => {
+  console.log('showAlls');
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      dataDisplay(data.data.tools);
+      console.log(data.data.tools);
+    });
+};
+// sort by date
+const sortByDate = () => {
+  console.log('sortByDate');
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const sortDataByDate = data.data.tools.sort(
+        (a, b) => new Date(a.published_in) - new Date(b.published_in)
+      );
+
+      console.log(sortDataByDate);
+      dataDisplay(sortDataByDate);
+    });
 };
 const dataDisplay = (data) => {
-  //   const showAlls = document.getElementById('see-more');
-  //   if (data.length > 6) {
-  //     data = data.slice(0, 6);
-
-  //     showAlls.classList.remove('d-none');
-  //   } else {
-  //     showAlls.classList.add('d-none');
-  //   }
-  // data= data.slice(0,6);
-
-  //   console.log(data);
+  document.getElementById('card_body').innerHTML = '';
   let ol_id = 0;
   data.forEach((element) => {
     // console.log(element);
@@ -195,5 +219,4 @@ const showModaldata = (data) => {
     modal_integrations.appendChild(li);
   }
 };
-
 loadData();

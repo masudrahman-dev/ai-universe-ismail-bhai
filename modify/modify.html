@@ -14,31 +14,11 @@
 <body>
     <!-- cards -->
     <div class="container">
+        <div class="text-center my-5">
+            <button onclick="showAlls()" class=" btn btn-primary ">Show All</button>
+            <button onclick="sortByDate()" class=" btn btn-warning ">Sort by Date</button>
+        </div>
         <div id="card_body" class="row g-5 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <!-- <div class="card">
-                <img src="						https://source.unsplash.com/user/c_v_r/100x100
-        " class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">Features</h5>
-                    <ol>
-                        <li>Natural language processing</li>
-                        <li>Contextual understanding</li>
-                        <li>Text generation</li>
-                    </ol>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4>ChatGPT</h4>
-                            <p>11/01/2022</p>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                <span><i class="fa fa-solid fa-arrow-right"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
         </div>
     </div>
@@ -46,21 +26,21 @@
 
 
     <!-- Modal -->
- 
+
     <!-- order-1 order-xl-0 -->
     <!-- class="position-relative " -->
     <!-- fade -->
 
-        <div class="modal pt-3 pe-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl  modal-dialog-centered">
-                <div class="modal-content ">
-                    <div id="modal_body" >
+    <div class="modal pt-3 pe-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl  modal-dialog-centered">
+            <div class="modal-content ">
+                <div id="modal_body">
 
-                 
-                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
