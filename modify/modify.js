@@ -1,37 +1,82 @@
 const url = 'https://openapi.programming-hero.com/api/ai/tools';
-
 const loadData = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       dataDisplay(data.data.tools.slice(0, 6));
+      // sortByDate(data.data.tools.slice(0, 6));
     });
 };
+
 // show all data
 const showAlls = () => {
   console.log('showAlls');
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      // Assuming dataDisplay takes an array of objects and displays it somehow
       dataDisplay(data.data.tools);
-      console.log(data.data.tools);
     });
 };
+
+// document.getElementById('sortByDate').addEventListener('click', () => {
+//   // console.log('sortByDate');
+//   // fetch(url)
+//   //   .then((res) => res.json())
+//   //   .then((data) => {
+//   //     // Assuming dataDisplay takes an array of objects and displays it somehow
+//   //     sortByDate(data.data.tools);
+//   //   });
+// });
+let sixItem = [];
+let allItem = [];
 // sort by date
 const sortByDate = () => {
-  console.log('sortByDate');
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      const sortDataByDate = data.data.tools.sort(
-        (a, b) => new Date(a.published_in) - new Date(b.published_in)
-      );
+  if (sixItem[0].length === 6 && allItem.length === 0) {
+    console.log(sixItem);
+    const sortDataByDate = [...sixItem[0]].sort(
+      (a, b) => new Date(b.published_in) - new Date(a.published_in)
+    );
+    console.log('sortDataByDate :>> ', sortDataByDate);
+    dataDisplay(sortDataByDate);
+  } else {
+    console.log(allItem);
+    const sortDataByDate = [...allItem[0]].sort(
+      (a, b) => new Date(b.published_in) - new Date(a.published_in)
+    );
+    console.log('sortDataByDate :>> ', sortDataByDate);
 
-      console.log(sortDataByDate);
-      dataDisplay(sortDataByDate);
-    });
+    dataDisplay(sortDataByDate);
+  }
 };
 const dataDisplay = (data) => {
+  console.log('data :>> ', data);
+  if (data.length === 6) {
+    sixItem.length === 0 && sixItem.push(data);
+  } else {
+    allItem.length === 0 && allItem.push(data);
+  }
+  // sortByDate(data);
+  // console.log(data);
+  // if (data.length === 0) {
+  //   sortByDate(data);
+  // }
+  // sortByDate(data);
+  // if (data.length === 6) {
+  //   // document.getElementById('sortByDate').addEventListener('click', () => {
+  //   //   sortByDate(data);
+  //   //   console.log(data.length);
+  //   // });
+  //   sortByDate(data);
+  // } else {
+  //   // document.getElementById('sortByDate').addEventListener('click', () => {
+  //   //   sortByDate(data);
+  //   //   console.log(data.length);
+  //   // });
+  //   sortByDate(data);
+  //   console.log(data.length);
+  // }
+
   document.getElementById('card_body').innerHTML = '';
   let ol_id = 0;
   data.forEach((element) => {
@@ -40,7 +85,9 @@ const dataDisplay = (data) => {
     <div >
                 <div class=" shadow rounded">
                 <div class="p-4">
-                <img src="${element.image}" class="img-fluid rounded"/>
+                <div >
+                <img  src="${element.image}" class=" img-fluid rounded "/>
+                </div>
                     <h5 class="mt-3">Features</h5>
                     <ol id="ol_id_${ol_id++}" >
         
@@ -213,3 +260,5 @@ const showModaldata = (data) => {
   }
 };
 loadData();
+// console.log('allItem :>> ', allItem);
+// console.log('sixItem :>> ', sixItem);
