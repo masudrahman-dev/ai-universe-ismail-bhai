@@ -55,7 +55,7 @@ const sortByDate = () => {
 };
 
 const dataDisplay = (data) => {
-  console.log('data :>> ', data);
+  // console.log('data :>> ', data);
   // if (data.length === 6) {
   //   sixItem.length === 0 && sixItem.push(data);
   // } else {
@@ -68,38 +68,19 @@ const dataDisplay = (data) => {
     allItem = [data];
   }
 
-  // sortByDate(data);
-  // console.log(data);
-  // if (data.length === 0) {
-  //   sortByDate(data);
-  // }
-  // sortByDate(data);
-  // if (data.length === 6) {
-  //   // document.getElementById('sortByDate').addEventListener('click', () => {
-  //   //   sortByDate(data);
-  //   //   console.log(data.length);
-  //   // });
-  //   sortByDate(data);
-  // } else {
-  //   // document.getElementById('sortByDate').addEventListener('click', () => {
-  //   //   sortByDate(data);
-  //   //   console.log(data.length);
-  //   // });
-  //   sortByDate(data);
-  //   console.log(data.length);
-  // }
-
   document.getElementById('card_body').innerHTML = '';
   let ol_id = 0;
   data.forEach((element) => {
     // console.log(element);
     document.getElementById('card_body').innerHTML += `
     <div >
-                <div class=" shadow rounded">
-                <div class="p-4">
-                <div >
-                <img  src="${element.image}" class=" img-fluid rounded "/>
+                <div class=" shadow rounded bg-primary-subtle h-100" >
+                <div class="d-flex justify-content-center pt-4 px-4" >
+                <img  src="${
+                  element.image
+                }" class=" img-fluid rounded " style="width: 300px;"/>
                 </div>
+                <div class="p-4">
                     <h5 class="mt-3">Features</h5>
                     <ol id="ol_id_${ol_id++}" >
         
