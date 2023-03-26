@@ -14,48 +14,60 @@ const showAlls = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      // Assuming dataDisplay takes an array of objects and displays it somehow
       dataDisplay(data.data.tools);
     });
 };
 
-// document.getElementById('sortByDate').addEventListener('click', () => {
-//   // console.log('sortByDate');
-//   // fetch(url)
-//   //   .then((res) => res.json())
-//   //   .then((data) => {
-//   //     // Assuming dataDisplay takes an array of objects and displays it somehow
-//   //     sortByDate(data.data.tools);
-//   //   });
-// });
+// let sixItem = [];
+// let allItem = [];
+// // sort by date
+// const sortByDate = () => {
+//   if (sixItem[0].length === 6 && allItem.length === 0) {
+//     console.log('sixItem :>> ', sixItem);
+//     // console.log('...sixItem[0] :>> ', [...sixItem[0]]);
+//     const sortDataByDate = [...sixItem[0]].sort(
+//       (a, b) => new Date(b.published_in) - new Date(a.published_in)
+//     );
+//     console.log('sortDataByDate :>> ', sortDataByDate);
+//     dataDisplay(sortDataByDate);
+//   } else {
+//     console.log('allItem :>> ', allItem);
+//     const sortDataByDate = [...allItem[0]].sort(
+//       (a, b) => new Date(b.published_in) - new Date(a.published_in)
+//     );
+//     console.log('sortDataByDate :>> ', sortDataByDate);
+
+//     dataDisplay(sortDataByDate);
+//   }
+// };
+
 let sixItem = [];
 let allItem = [];
+
 // sort by date
 const sortByDate = () => {
-  if (sixItem[0].length === 6 && allItem.length === 0) {
-    console.log(sixItem);
-    const sortDataByDate = [...sixItem[0]].sort(
-      (a, b) => new Date(b.published_in) - new Date(a.published_in)
-    );
-    console.log('sortDataByDate :>> ', sortDataByDate);
-    dataDisplay(sortDataByDate);
-  } else {
-    console.log(allItem);
-    const sortDataByDate = [...allItem[0]].sort(
-      (a, b) => new Date(b.published_in) - new Date(a.published_in)
-    );
-    console.log('sortDataByDate :>> ', sortDataByDate);
-
-    dataDisplay(sortDataByDate);
-  }
+  const dataToSort =
+    sixItem.length > 0 && allItem.length === 0 ? sixItem[0] : allItem[0];
+  const sortDataByDate = [...dataToSort].sort(
+    (a, b) => new Date(b.published_in) - new Date(a.published_in)
+  );
+  dataDisplay(sortDataByDate);
 };
+
 const dataDisplay = (data) => {
   console.log('data :>> ', data);
+  // if (data.length === 6) {
+  //   sixItem.length === 0 && sixItem.push(data);
+  // } else {
+  //   allItem.length === 0 && allItem.push(data);
+  // }
+
   if (data.length === 6) {
-    sixItem.length === 0 && sixItem.push(data);
+    sixItem = [data];
   } else {
-    allItem.length === 0 && allItem.push(data);
+    allItem = [data];
   }
+
   // sortByDate(data);
   // console.log(data);
   // if (data.length === 0) {
